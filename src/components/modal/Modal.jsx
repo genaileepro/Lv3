@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StTotalButton } from '../ProjectCss';
+import { StAlignContainer, StTotalButton } from '../ProjectCss';
 import DecoMdal from './ModalTools';
 
 const Modal = () => {
@@ -10,7 +10,7 @@ const Modal = () => {
         <div>
             <div>
                 <h1>Modal</h1>
-                <div>
+                <StAlignContainer>
                     <StTotalButton
                         size="small"
                         $bordercolor="#45eb88"
@@ -38,7 +38,7 @@ const Modal = () => {
                         isOpen={isOpen1}
                         onClick={() => setIsOpen1(false)}
                     />
-                </div>
+                </StAlignContainer>
             </div>
         </div>
     );

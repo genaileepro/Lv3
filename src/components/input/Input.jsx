@@ -1,56 +1,37 @@
 import React, { useState } from 'react';
 import { StInput, StInputContainer, StTotalButton } from '../ProjectCss';
 
-const PriceFormatInput = ({ getValues }) => {
-    const [value, setValue] = useState({
-        raw: "0",
-        format: "0",
-    });
-
-    const onChageHandler = ({ target }) => {
-        const rex = /\D/g;
-
-        const raw = target.value.replaceAll(",", "");
-        const format = new Intl.NumberFormat().format(
-            target.value.replaceAll(",", "")
-        );
-
-        if (!rex.test(target.value.replaceAll(",", ""))) {
-            setValue((old) => ({
-                ...old,
-                raw,
-                format,
-            }));
-
-            getValues && getValues({ raw, format });
-        }
-    };
-
-    return (
-        <StInput 
-            type="text"
-            value={value.format}
-            onChange={onChageHandler}
-        />
-    );
-};
-
 const Input = () => {
     const [name, setName] = useState('');
-    const [price, setPrice] = useState({ raw: "0", format: "0" });
+    const [price, setPrice] = useState('');
 
     const onChangeNameBtHd = (event) => {
         setName(event.target.value);
     };
 
-    const onChangePrice = ({ raw, format }) => {
-        setPrice({ raw, format });
+    // const onChangePrice = (event) => {
+    //     const e = +event.target.value.split(',').join('');
+    //     return isNaN(e) ? null : setPrice(e);
+    // };
+
+    const onChangePrice = (event) => {
+        const inputValue = event.target.value;
+        const numericValue = inputValue.replace(/[^0-9]/g, ''); // 숫자만 남기기
+        setPrice(numericValue);
+    };
+
+    const formatPrice = (value) => {
+        const parts = [];
+        for (let i = value.length; i > 0; i -= 3) {
+            parts.unshift(value.slice(Math.max(0, i - 3), i));
+        }
+        return parts.join(',');
     };
 
     const onClickSaveButtonHandler = () => {
-        name.trim() === '' || price.raw.trim() === ''
+        name.trim() === '' && price.trim() === ''
             ? alert('Please enter both name and price.')
-            : alert(`name : ${name} price:${price.raw}`);
+            : alert(`name : ${name} price:${price}`);
     };
 
     return (
@@ -59,15 +40,25 @@ const Input = () => {
             <StInputContainer>
                 <div>
                     Name
-                    <input
+                    <StInput
                         type="text"
                         value={name}
                         onChange={onChangeNameBtHd}
-                    ></input>
+                    />
                 </div>
                 <div>
                     price
-                    <PriceFormatInput getValues={onChangePrice} />
+                    {/* <StInput
+                        type="text"
+                        value={price.toLocaleString()}
+                        onChange={onChangePrice}
+                    /> */}
+                    <StInput
+                        type="text"
+                        value={formatPrice(price)}
+                        onChange={onChangePrice}
+                        placeholder="0"
+                    />
                 </div>
                 <StTotalButton
                     $bordercolor="#45eb88"

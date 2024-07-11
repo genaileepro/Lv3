@@ -1,12 +1,12 @@
 import React from 'react';
-import { StTotalButton } from '../ProjectCss';
+import { StAlignContainer, StTotalButton } from '../ProjectCss';
 
 const Button = () => {
     return (
         <div>
             <h1>Button</h1>
             <div>
-                <div>
+                <StAlignContainer>
                     <StTotalButton
                         $bordercolor="#45eb88"
                         $color="#000000"
@@ -31,7 +31,7 @@ const Button = () => {
                     >
                         Small
                     </StTotalButton>
-                </div>
+                </StAlignContainer>
                 <div>
                     <StTotalButton
                         onClick={() =>

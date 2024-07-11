@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components';
 
+export const StAlignContainer = styled.div`
+    align-items: baseline;
+    gap: 30px;
+`;
+
 export const StTotalButton = styled.button`
     border: 3px solid ${(props) => props.$bordercolor};
     color: ${(props) => props.$color};
@@ -41,15 +46,14 @@ export const StTotalButton = styled.button`
 
 export const StInputContainer = styled.div`
     display: flex;
-    gap: 5px;
+    gap: 30px;
+    align-items: baseline;
 `;
 
 export const StInput = styled.input`
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+    border-radius: 10px;
+    height: 30px;
+    margin-left: 10px;
 `;
 
 export const StUnderContainer = styled.div`

@@ -1,11 +1,11 @@
 import React from 'react';
-import { StUnderContainer } from '../ProjectCss';
+import { StAlignContainer, StUnderContainer } from '../ProjectCss';
 import styled from 'styled-components';
 
 const Select = () => {
     return (
         <StUnderContainer>
-            <div>
+            <StAlignContainer>
                 <h1>Select</h1>
                 <StSelect>
                     <option>React</option>
@@ -19,7 +19,7 @@ const Select = () => {
                     <option>Java</option>
                     <option>JavaScript</option>
                 </StSelect>
-            </div>
+            </StAlignContainer>
         </StUnderContainer>
     );
 };
@@ -33,9 +33,3 @@ const StSelect = styled.select`
     width: 300px;
     height: 50px;
 `;
-
-// const StOption = styled.option`
-// display: flex;
-// align-items: center;
-// justify-content: center;
-// `;
